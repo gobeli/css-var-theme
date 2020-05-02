@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "ES6"],
+    "module": "esnext",
+    "noEmit": true,
+    "noEmitOnError": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "pretty": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2017"
+  },
+  "exclude": ["dist", "node_modules"]
+}

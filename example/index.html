@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS-Theming</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--color-bg);
+        color: var(--color-font);
+        font-family: Helvetica, sans-serif;
+      }
+
+      button {
+        appearance: none;
+        background-color: transparent;
+        color: inherit;
+        border: none;
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        height: 34px;
+        padding: 5px;
+      }
+
+      svg {
+        color: inherit;
+      }
+    </style>
+    <script src="dist/bundle.js" defer></script>
+  </head>
+  <body>
+    <button id="change">Change Theme</button>
+    <h1>
+      CSS Theming
+    </h1>
+  </body>
+</html>
