@@ -1,12 +1,12 @@
 import { store, Store } from './store'
 import { genId, getKeyValue } from './util'
 
-interface Theme {
+export interface Theme {
   meta?: object
   theme: object
 }
 
-function genTheme(new_theme: Theme, prefix = '-'): string {
+function genTheme(new_theme: object, prefix = '-'): string {
   const get = getKeyValue(new_theme)
   return Object.keys(new_theme)
     .map((key: string) =>

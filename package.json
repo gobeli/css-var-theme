@@ -1,5 +1,5 @@
 {
-  "name": "css-theming",
+  "name": "css-var-theme",
   "version": "0.0.1",
   "description": "",
   "module": "dist/index.mjs",
