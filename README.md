@@ -1,3 +1,5 @@
+![build](https://github.com/gobeli/css-var-theme/workflows/build/badge.svg)
+
 # css-var-theme
 
 A small, dependency-free utility to enable efficient theming with css variables.
