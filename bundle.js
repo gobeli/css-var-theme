@@ -104,6 +104,7 @@
   const light_theme = {
       meta: {
           name: 'light theme',
+          hjs_theme: 'github',
           change_image: moon,
       },
       theme: {
@@ -116,6 +117,7 @@
   const dark_theme = {
       meta: {
           name: 'dark theme',
+          hjs_theme: 'monokai-sublime',
           change_image: sun,
       },
       theme: {
@@ -131,13 +133,13 @@
       light: light_theme,
   });
   const $change = document.getElementById('change');
-  const $h1 = document.getElementById('title');
-  if ($change && $h1) {
+  const $highlightjs = document.getElementById('highlightjs');
+  if ($change && $highlightjs) {
       let current_theme = light_theme;
       theme_store.subscribe((t) => {
           current_theme = t;
-          $h1.textContent = t.meta.name;
           $change.innerHTML = t.meta.change_image;
+          $highlightjs.setAttribute('href', `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.1/styles/${t.meta.hjs_theme}.min.css`);
       });
       $change.addEventListener('click', () => {
           theme_store.set(current_theme.meta.name === light_theme.meta.name
