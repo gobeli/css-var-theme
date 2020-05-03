@@ -1,6 +1,9 @@
 import typescript from '@rollup/plugin-typescript'
 
 import pkg from './package.json'
+import build from './example/build'
+
+build()
 
 export default [
   {

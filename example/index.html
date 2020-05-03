@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CSS-Theming</title>
+
     <style>
       html,
       body {
@@ -12,9 +13,6 @@
 
       body {
         margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         background-color: var(--color-bg);
         color: var(--color-font);
         font-family: Helvetica, sans-serif;
@@ -36,16 +34,23 @@
         color: inherit;
       }
 
-      h1 {
-        font-size: 50px;
+      main {
+        max-width: 800px;
+        margin: 24px auto;
+        padding: 12px;
       }
     </style>
-    <script src="dist/bundle.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.1/styles/a11y-light.min.css"
+      id="highlightjs"
+    />
+    <script src="bundle.js" defer></script>
   </head>
   <body>
     <button id="change">Change Theme</button>
-    <h1 id="title">
-      Theme
-    </h1>
+    <main>
+      {README}
+    </main>
   </body>
 </html>

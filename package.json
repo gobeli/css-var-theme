@@ -4,6 +4,7 @@
   "description": "",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
     "build": "rollup -c",
     "test": "jest",
@@ -18,7 +19,9 @@
     "@babel/preset-typescript": "^7.9.0",
     "@rollup/plugin-typescript": "^4.1.1",
     "@types/jest": "^25.2.1",
+    "highlight.js": "^10.0.1",
     "jest": "^25.5.3",
+    "marked": "^1.0.0",
     "rollup": "^2.7.6",
     "tslib": "^1.11.1",
     "typescript": "^3.8.3"

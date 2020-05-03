@@ -4,6 +4,7 @@ import { useTheme, Theme } from '../../src/index'
 interface MyTheme extends Theme {
   meta: {
     name: string
+    hjs_theme: string
     change_image: string
   }
   theme: {
@@ -17,6 +18,7 @@ interface MyTheme extends Theme {
 const light_theme: MyTheme = {
   meta: {
     name: 'light theme',
+    hjs_theme: 'github',
     change_image: moon,
   },
   theme: {
@@ -30,6 +32,7 @@ const light_theme: MyTheme = {
 const dark_theme: MyTheme = {
   meta: {
     name: 'dark theme',
+    hjs_theme: 'monokai-sublime',
     change_image: sun,
   },
   theme: {
@@ -46,14 +49,17 @@ const theme_store = useTheme({
 })
 
 const $change = document.getElementById('change')
-const $h1 = document.getElementById('title')
+const $highlightjs = document.getElementById('highlightjs')
 
-if ($change && $h1) {
+if ($change && $highlightjs) {
   let current_theme = light_theme
   theme_store.subscribe((t) => {
     current_theme = t
-    $h1.textContent = t.meta.name
     $change.innerHTML = t.meta.change_image
+    $highlightjs.setAttribute(
+      'href',
+      `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.1/styles/${t.meta.hjs_theme}.min.css`
+    )
   })
 
   $change.addEventListener('click', () => {
