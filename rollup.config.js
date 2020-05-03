@@ -3,8 +3,6 @@ import typescript from '@rollup/plugin-typescript'
 import pkg from './package.json'
 import build from './example/build'
 
-build()
-
 export default [
   {
     input: 'src/index.ts',
@@ -19,6 +17,6 @@ export default [
     output: [
       { file: 'example/dist/bundle.js', format: 'iife', sourcemap: true },
     ],
-    plugins: [typescript()],
+    plugins: [typescript(), build()],
   },
 ]

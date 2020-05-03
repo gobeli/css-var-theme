@@ -2,7 +2,7 @@ import fs from 'fs'
 import marked from 'marked'
 import hljs from 'highlight.js'
 
-export default function build() {
+function doBuild() {
   const mark = marked.setOptions({
     renderer: new marked.Renderer(),
     tables: true,
@@ -22,4 +22,13 @@ export default function build() {
     './example/dist/index.html',
     template.replace('{README}', mark(readme))
   )
+}
+
+export default function build() {
+  return {
+    name: 'build',
+    generateBundle() {
+      doBuild()
+    },
+  }
 }
