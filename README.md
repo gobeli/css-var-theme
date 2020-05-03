@@ -5,7 +5,12 @@
 A small, dependency-free utility to enable efficient theming with css variables.
 
 [Repo](https://github.com/gobeli/css-var-theme) /
-[Demo](https://gobeli.github.io/css-var-theme/)
+[Demo](https://gobeli.github.io/css-var-theme/) /
+[npm](https://www.npmjs.com/package/css-var-theme)
+
+## Installation
+
+`npm i css-var-theme`
 
 ## Usage
 
