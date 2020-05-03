@@ -15,7 +15,9 @@ export default function build() {
 
   const readme = fs.readFileSync('./README.md').toString()
   const template = fs.readFileSync('./example/index.html').toString()
-
+  if (!fs.existsSync('./example/dist')) {
+    fs.mkdirSync('./example/dist')
+  }
   fs.writeFileSync(
     './example/dist/index.html',
     template.replace('{README}', mark(readme))
