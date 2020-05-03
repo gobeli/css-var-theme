@@ -65,6 +65,9 @@
 
   const getKeyValue = (obj) => (key) => obj[key];
   const genId = () => 'theme-' + Math.random().toString(36).substring(2, 12);
+  const prefersDarkMode = () => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const prefersLightMode = () => window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: light)').matches;
 
   function genTheme(new_theme, prefix = '-') {
       const get = getKeyValue(new_theme);
@@ -74,20 +77,28 @@
           : `${prefix}-${key}: ${get(key)};`)
           .join('\n');
   }
-  function applyTheme($style, new_theme) {
-      $style.textContent = `:root {
-    ${genTheme(new_theme)}
-  }`;
-  }
-  function theme(initial_theme, id) {
-      const themeStore = store(initial_theme);
+  function createStyleElement(id) {
       const $style = document.createElement('style');
       $style.id = id || genId();
       document.head.appendChild($style);
-      themeStore.subscribe((t) => {
-          applyTheme($style, t.theme);
+      return $style;
+  }
+  function useTheme({ initial, light, dark, id, }) {
+      let used_theme = initial;
+      if (prefersDarkMode() && dark) {
+          used_theme = dark;
+      }
+      if (prefersLightMode() && light) {
+          used_theme = light;
+      }
+      const theme_store = store(used_theme);
+      const $style = createStyleElement(id);
+      theme_store.subscribe((t) => {
+          $style.textContent = `:root {
+  ${genTheme(t.theme)}
+}`;
       });
-      return themeStore;
+      return theme_store;
   }
 
   const light_theme = {
@@ -114,7 +125,11 @@
           },
       },
   };
-  const theme_store = theme(light_theme);
+  const theme_store = useTheme({
+      initial: light_theme,
+      dark: dark_theme,
+      light: light_theme,
+  });
   const $change = document.getElementById('change');
   const $h1 = document.getElementById('title');
   if ($change && $h1) {
