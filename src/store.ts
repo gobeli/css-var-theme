@@ -1,7 +1,5 @@
-/** Callback to inform of a value updates. */
 type Subscriber<T> = (value: T) => void
 
-/** Unsubscribes from value updates. */
 type Unsubscriber = () => void
 
 export interface Store<T> {

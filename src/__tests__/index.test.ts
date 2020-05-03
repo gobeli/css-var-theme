@@ -1,4 +1,4 @@
-import { theme } from '../index'
+import { useTheme } from '../index'
 
 interface MyTheme {
   theme: {
@@ -48,10 +48,10 @@ beforeEach(() => {
 
 it('should initialize theme', () => {
   // given
-  const id = 'theme-1'
+  const id = '1'
 
   // when
-  theme(initial_theme, id)
+  useTheme({ initial: initial_theme, id })
   const $style = document.getElementById(id)
 
   // then
@@ -61,12 +61,29 @@ it('should initialize theme', () => {
 
 it('should be able to switch the theme', () => {
   // given
-  const id = 'theme-2'
-  const theme_store = theme(initial_theme, id)
+  const id = '2'
+  const theme_store = useTheme({ initial: initial_theme, id })
 
   // when
   theme_store.set(dark_theme)
   const $style = document.getElementById(id)
+
+  // then
+  expect($style?.innerHTML).toContain('--colors-bg: #222;')
+  expect($style?.innerHTML).toContain('--sizes-border-radius: 6px;')
+})
+
+it('should use prefered mode', () => {
+  // given
+  const id = '3'
+  window.matchMedia = jest.fn((query): any => ({
+    matches: query === '(prefers-color-scheme: dark)',
+  }))
+
+  // when
+  useTheme({ initial: initial_theme, dark: dark_theme, id })
+  const $style = document.getElementById(id)
+
   // then
   expect($style?.innerHTML).toContain('--colors-bg: #222;')
   expect($style?.innerHTML).toContain('--sizes-border-radius: 6px;')

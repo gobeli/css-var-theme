@@ -1,5 +1,5 @@
 import { sun, moon } from './images'
-import { theme, Theme } from '../../src/index'
+import { useTheme, Theme } from '../../src/index'
 
 interface MyTheme extends Theme {
   meta: {
@@ -39,7 +39,11 @@ const dark_theme: MyTheme = {
     },
   },
 }
-const theme_store = theme(light_theme)
+const theme_store = useTheme({
+  initial: light_theme,
+  dark: dark_theme,
+  light: light_theme,
+})
 
 const $change = document.getElementById('change')
 const $h1 = document.getElementById('title')
